@@ -49,6 +49,8 @@ function setup() {
   shipX = width/2;
   shipY = height - (shipDiameter/2);
   shipSpeed = 5;
+  bulletDiameter = 30;
+
 }
 
 
@@ -75,6 +77,7 @@ function setup() {
 function draw() {
   background(20,30,40);
   drawShip();
+  drawBullet();
 }
 
 /*
@@ -105,7 +108,12 @@ function drawShip() {
  * ship. Then it sets the "shipShooting" variable to "true", indicating a ship
  * bullet is currently being fired.
  */
-
+function keyPressed() {
+  if(keyCode === 32) {
+    bulletX = shipX;
+    bulletY = shipY;
+  }
+}
 
 /*
  * drawBullet()
@@ -114,7 +122,11 @@ function drawShip() {
  * and the player earns a point. The alien aslo becomes faster (i.e., harder
  * to hit) each time it is hit by a bullet.
  */
-
+function drawBullet() {
+  noStroke();
+  fill("#00ff00")
+  ellipse(bulletX,bulletY, bulletDiameter,bulletDiameter);
+}
 
 /*
  * drawAlien()
